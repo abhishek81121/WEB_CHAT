@@ -1,95 +1,82 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import Image from "next/image";
+import styles from "./page.module.css";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function Home() {
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [inavlidu, setInvalidu] = useState("hidden");
+  function loginto() {
+    axios
+      .post("/api/login", {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response.data.status);
+        if (response.data.status == "true") {
+          // router.push("./chat");
+          setInvalidu("hidden");
+        } else {
+          setInvalidu("visible");
+        }
+      });
+  }
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+      <div className={styles.maincard}>
+        <div className={styles.logincred}>
+          <div className={styles.username}>
+            <img src="./profile.png" className={styles.usernameimage}></img>
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Username"
+              onChange={(e) => {
+                setUsername(e.target.value);
+                inavlidu == "visible" ? setInvalidu("hidden") : null;
+              }}
             />
-          </a>
+          </div>
+          <div className={styles.username}>
+            <img src="./padlock.png" className={styles.usernameimage}></img>
+            <input
+              className={styles.input}
+              type="Password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                inavlidu == "visible" ? setInvalidu("hidden") : null;
+              }}
+            />
+          </div>
+          <motion.div
+            className={styles.buttoncontainer}
+            whileHover={{ scale: 1.05 }}
+          >
+            <button className={styles.button} onClick={loginto}>
+              Login
+            </button>
+          </motion.div>
+          <span
+            style={{
+              textDecoration: "bold",
+              fontSize: "larger",
+              visibility: inavlidu,
+            }}
+          >
+            Username or Password is inavlid!
+          </span>
+        </div>
+        <div className={styles.loginpic}>
+          <img className={styles.pic} src="./loginpic.png"></img>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
+  );
 }
