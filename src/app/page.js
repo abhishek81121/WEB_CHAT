@@ -20,7 +20,7 @@ export default function Home() {
       .then((response) => {
         console.log(response.data.status);
         if (response.data.status == "true") {
-          // router.push("./chat");
+          router.push("./chat");
           setInvalidu("hidden");
         } else {
           setInvalidu("visible");
