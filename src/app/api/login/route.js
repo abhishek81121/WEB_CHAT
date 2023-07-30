@@ -38,8 +38,6 @@ export async function POST(request, response) {
       });
     });
   }
-
-  console.log(flag);
   if (flag == 0) return NextResponse.json({ status: "false" });
   else return NextResponse.json({ status: "true" });
 }
