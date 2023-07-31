@@ -19,7 +19,6 @@ export default function Home() {
         password: password,
       })
       .then((response) => {
-        console.log(response.data.status);
         if (response.data.status == "true") {
           router.push("./chat");
           setInvalidu("hidden");

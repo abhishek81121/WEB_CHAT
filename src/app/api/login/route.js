@@ -12,7 +12,6 @@ export async function POST(request, response) {
   try {
     await mongoose.connect(process.env.DB_URI);
     const data = await usermod.findOne({ username: username });
-    console.log(data);
     if (data) {
       let promise = await new Promise((resolve, reject) => {
         bcrypt.compare(password, data.password, (err, res) => {
@@ -44,7 +43,7 @@ export async function POST(request, response) {
         });
       });
     }
-    console.log(flag);
+
     if (flag == 0) return NextResponse.json({ status: "false" });
     else return NextResponse.json({ status: "true" });
   } catch (err) {
