@@ -29,6 +29,14 @@
   .input:focus{
     outline: none;
   }
+  .linkto{
+    text-decoration: none;
+    color: #4386f2;
+    font-size: larger;
+  }
+  .linkto:hover{
+    color: #2EE59D;
+  }
   .main{
     background-color: #faf7f7;
     height: 100vh;

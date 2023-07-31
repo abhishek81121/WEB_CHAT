@@ -47,6 +47,14 @@ font-size: large;
   flex-direction: row;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+.linkto{
+  text-decoration: none;
+  color: #4386f2;
+  font-size: larger;
+}
+.linkto:hover{
+  color: #2EE59D;
+}
 .logincred{
  height: 100%;
  width: 50%;

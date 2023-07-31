@@ -2,8 +2,9 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import axios from "axios";
 
 export default function Home() {
@@ -72,6 +73,9 @@ export default function Home() {
           >
             Username or Password is inavlid!
           </span>
+          <Link href="/signup" className={styles.linkto}>
+            Sign Up
+          </Link>
         </div>
         <div className={styles.loginpic}>
           <img className={styles.pic} src="./loginpic.png"></img>

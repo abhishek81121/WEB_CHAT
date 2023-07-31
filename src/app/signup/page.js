@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 var bcrypt = require("bcryptjs");
 
 export default function Home() {
@@ -89,6 +90,9 @@ export default function Home() {
           >
             Username or Password is inavlid or unavailabel!
           </span>
+          <Link href="/" className={styles.linkto}>
+            Log In
+          </Link>
         </div>
         <div className={styles.loginpic}>
           <img className={styles.pic} src="./loginpic.png"></img>
