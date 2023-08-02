@@ -9,6 +9,20 @@ export async function POST(request, response) {
   const username = info.username.slice(0, -9);
   const password = info.password;
   var flag = 0;
+  async function updatedb() {
+    await usermod.updateOne(
+      { username: username },
+      {
+        refreshtoken: jwt.sign(
+          { username: username },
+          process.env.REFRESH_SECRET,
+          {
+            expiresIn: "1d",
+          }
+        ),
+      }
+    );
+  }
   try {
     await mongoose.connect(process.env.DB_URI);
     const data = await usermod.findOne({ username: username });
@@ -29,13 +43,8 @@ export async function POST(request, response) {
               sameSite: true,
               secure: true,
             });
-            cookies().set(
-              "refreshtoken",
-              jwt.sign({ username: username }, process.env.REFRESH_SECRET, {
-                expiresIn: "1d",
-              }),
-              { httpOnly: true, sameSite: true, secure: true }
-            );
+            updatedb();
+
             resolve("ok");
           } else {
             reject("error");

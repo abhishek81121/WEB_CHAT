@@ -11,7 +11,7 @@ export async function POST(request) {
     var user = new usermod({
       username: username,
       password: password,
-      accesstoken: null,
+      refreshtoken: null,
     });
     await user.save();
     return NextResponse.json({ status: "true" });

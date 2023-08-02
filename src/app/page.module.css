@@ -47,6 +47,10 @@ font-size: large;
   flex-direction: row;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+.notfound{
+  height: 100vh;
+  width: 100vw;
+}
 .linkto{
   text-decoration: none;
   color: #4386f2;
