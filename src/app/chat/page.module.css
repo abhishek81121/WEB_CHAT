@@ -1,0 +1,92 @@
+.body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100vh;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 100%;
+}
+.button{
+    height: 15%;
+    width: 30%;
+}
+.buttonin{
+    height: 100%;
+    width: 100%;
+    background-color: #4386f2;
+    font-size: larger;
+    border-radius: 16px;
+    color: white;
+    border-width: 0px;
+  }
+  .buttonin:hover{
+    background-color:#2EE59D ;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff; 
+  }
+  .createbutton{
+    background-color: #4386f2;
+    font-size: larger;
+    border-radius: 16px;
+    color: white;
+    border-width: 0px;
+    height: 10%;
+  }
+  .createbutton:hover{
+    background-color:#2EE59D ;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  }
+  .popup{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0px;
+    backdrop-filter: blur(5px);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+  }
+  .popupbody{
+    height: 80%;
+    width: 80%;
+    background-color: whitesmoke;
+    background-color: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-content: center;
+    
+  }
+  .roomname{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    width: 60%;
+    height: 10%;
+    outline: none;
+    font-size: x-large;
+  }
+  .roomname::placeholder{
+    font-size: x-large;
+  }
+  .roompassword{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    width: 60%;
+    height: 10%;
+    outline: none;
+    font-size: x-large;
+  }
+  .roompassword::placeholder{
+    font-size: x-large;
+  }
+ 

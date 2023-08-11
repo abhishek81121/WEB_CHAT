@@ -19,6 +19,14 @@ export default async function middleware(req) {
     } catch (err) {
       console.log(err);
     }
+  } else if (req.nextUrl.pathname === "/chat") {
+    const accesstoken = req.cookies.get("accesstoken");
+    // console.log(accesstoken.value);
+    const payload = await jwtVerify(
+      accesstoken.value,
+      new TextEncoder().encode(process.env.ACCESS_SECRET)
+    );
+    const username = payload.payload.username;
   }
 }
 export const config = {
