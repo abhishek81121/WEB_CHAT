@@ -11,6 +11,7 @@ export async function POST(request) {
     var user = new usermod({
       username: username,
       password: password,
+      friends: null,
       refreshtoken: null,
     });
     await user.save();

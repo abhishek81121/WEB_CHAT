@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const credentials = new mongoose.Schema({
   username: String,
   password: String,
+  friends: String,
   refreshtoken: String,
 });
 

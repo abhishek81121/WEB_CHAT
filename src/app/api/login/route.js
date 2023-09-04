@@ -43,6 +43,11 @@ export async function POST(request, response) {
               sameSite: true,
               secure: true,
             });
+            cookies().set("username", username, {
+              httpOnly: true,
+              sameSite: true,
+              secure: true,
+            });
             updatedb();
 
             resolve("ok");
