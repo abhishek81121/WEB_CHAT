@@ -1,4 +1,5 @@
 import usermod from "@/app/model/model";
+import { setCookie } from "cookies-next";
 import mongoose from "mongoose";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
@@ -44,7 +45,7 @@ export async function POST(request, response) {
               secure: true,
             });
             cookies().set("username", username, {
-              httpOnly: true,
+              // httpOnly: true,
               sameSite: true,
               secure: true,
             });

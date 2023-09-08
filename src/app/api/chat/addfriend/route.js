@@ -2,41 +2,43 @@ import usermod from "@/app/model/model";
 import mongoose from "mongoose";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import firebase_app from "@/firebase/config";
+import { getDatabase, ref, set } from "firebase/database";
 export async function POST(req) {
   const info = await req.json();
-  console.log(info);
-  var flag = "user not found";
+  var flag = "User Not Found";
   let ans;
+
   const username = cookies().get("username").value;
   const friendname = info.friendname;
   await mongoose.connect(process.env.DB_URI);
   const data = await usermod.findOne({ username: friendname });
+  const user = await usermod.findOne({ username: username });
   if (data) {
-    flag = "cannot make yourself a friend";
+    flag = "Cannot Make Yourself A Friend";
     if (friendname != username) {
       var friendarr;
-      if (data.freinds != null) friendarr = data.friends.split(",");
+      if (user.freinds != "") friendarr = user.friends.split(",");
       else friendarr = [];
       for (var i = 0; i < friendarr.length; i++) {
         if (friendname == friendarr[i]) {
-          flag = "already friends";
+          flag = "Already Friends";
         }
       }
-      if (flag != "already friends") {
-        flag = "friend added";
-
-        if (data.friends != null) {
-          ans = data.friends + "," + friendname;
+      if (flag != "Already Friends") {
+        flag = "Friend Added";
+        console.log(data);
+        if (user.friends != "") {
+          ans = user.friends + "," + friendname;
         } else {
           ans = friendname;
         }
       }
-      if (flag == "friend added") {
+      if (flag == "Friend Added") {
         await usermod.updateOne({ username: username }, { friends: ans });
         ans = await usermod.findOne({ username: friendname });
-        console.log(ans);
         ans = ans.friends;
-        if (ans == null)
+        if (ans == "")
           await usermod.updateOne(
             { username: friendname },
             { friends: username }

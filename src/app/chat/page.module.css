@@ -33,21 +33,38 @@ box-sizing: border-box;
 .find:hover{
   background-color:#2EE59D ;
 }
+
 .friendlist{
   height : 93%;
   width: 100%;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+  
+}
+.friendlist::-webkit-scrollbar{
+  display: none;
 }
 .friendsername{
   height: 100%;
   width: 85%;
-  border-width: 0.25vw;
-  border-style: solid;
   border-color: rgba(22, 21, 20, 0.195);
   border-radius: 10px 10px 10px 10px;
   padding: 0px;
-  margin-bottom: 10px;
   box-sizing: border-box;
-
+  text-decoration: none;
+  font-size: large;
+  color: grey;
+  margin-bottom: 5px;
+}
+.friendsername::placeholder{
+  text-align: center;
+ 
 }
 .friendsername:focus{
   outline: none;
@@ -57,5 +74,43 @@ box-sizing: border-box;
   width: 100vw;
   display: flex;
   flex-direction: row;
-
 }
+.messagepop{
+  position: fixed;
+  left: 30vw;
+  display: flex;
+  width: 38vw;
+  height: 10vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgb(206, 223, 237);
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.friendinfodisp{
+  width: 90%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: lighter;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.friendinfodisp:hover {
+  box-shadow: 0 5px 35px 0px rgba(0,0,0,.1);
+  color: white;
+  background-color:  #2ade2a ;
+  border-radius: 10px;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+}
+
+
